@@ -3,7 +3,7 @@
   "author": "Rait Talisoo",
   "classifications": ["React", "Web", "SPA"],
   "identity": "AspNetCore.React.TypeScript.Scaffold",
-  "name": "ASP-NET Core with React.js and Typescript",
+  "name": "ASP.NET Core with React.js and Typescript",
   "sourceName": "AspNetReactTS",
   "shortName": "react-ts",
   "tags": {
