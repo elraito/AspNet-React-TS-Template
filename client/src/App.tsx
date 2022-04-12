@@ -17,7 +17,7 @@ function App() {
   }, []);
 
   const populateweatherData = async () => {
-    const response = await fetch("api//weatherforecast");
+    const response = await fetch("api/weatherforecast");
     const data = await response.json();
     setForecasts(data);
     setLoading(false);
