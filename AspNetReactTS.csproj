@@ -10,7 +10,11 @@
 
     <SpaRoot>client\</SpaRoot>
     <SpaProxyServerUrl>https://localhost:3000</SpaProxyServerUrl>
+    <!--#if (EnableNPM )-->
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+    <!--#else-->
+    <SpaProxyLaunchCommand>yarn start</SpaProxyLaunchCommand>
+    <!--#endif-->
 
   </PropertyGroup>
 
@@ -30,15 +34,34 @@
     <Exec Command="node --version" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
     </Exec>
+
+    <!--#if (EnableNPM )-->
+    <Exec Command="npm --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
     <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js and npm are required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
     <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <!--#else-->
+    <Exec Command="yarn --version" ContinueOnError="true">
+    <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js and yarn are required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'yarn'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="yarn install" />
+    <!--#endif-->
+
   </Target>
 
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <!--#if (EnableNPM )-->
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+    <!--#else-->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="yarn install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="yarn build" />
+    <!--#endif-->
 
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
