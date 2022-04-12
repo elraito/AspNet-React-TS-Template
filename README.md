@@ -4,9 +4,9 @@ This is essentially a cobbled together version of .net 6 template with React.JS 
 
 ### Changes to the original dotnet new react template:
 
-Bootstrap is removed giving option for other CSS Frameworks
-React updated to version 18
-Removed bunch of boilerplate. On the backend you need to clean up the standard WeatherForecast Controller and on the frontend you only need to clean App.tsx. The final bits left in are just to test if the template runs.
+Bootstrap is removed giving option for other CSS Frameworks like Material or Tailwind.
+React updated to version 18.
+Removed bunch of boilerplate leaving only the bare minimal to verify it runs. For full cleanup in the backend clean up the standard WeatherForecast Controller and on the frontend clean up App.tsx.
 
 ### Installation
 
@@ -35,4 +35,10 @@ The template defaults to Yarn as package manager. If you wish to use NPM instead
 
 ```
 dotnet new react-ts -E
+```
+
+Verify launch and start editing
+
+```
+dotnet watch run
 ```
